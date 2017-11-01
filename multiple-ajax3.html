@@ -10,19 +10,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
 
-    var app_key="app_key=238477868c4e70b18cc712bf9f08d051"
-
-    var app_id="app_id=813ea76d"
-
-    var query="q="
-
-    var userinput
-
-    query = "" + userinput
-
+    
     // Performing GET requests to the OMDB API and logging the responses to the console
     $.ajax({
-      url: "https://api.edamam.com/search?" + app_key + "&" + app_id + "&" + query
+      url: "https://api.edamam.com/search?app_key=238477868c4e70b18cc712bf9f08d051&app_id=813ea76d&q=chicken",
       method: "GET"
     }).done(function(response) {
       console.log(response);
