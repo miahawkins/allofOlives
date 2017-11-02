@@ -1,0 +1,34 @@
+body {
+	background-color: #e3681d;
+}
+th {
+	font-size: 20px;
+	text-align: center;
+	background-color: #c26e4e;
+}
+.panel-heading, h4 {
+	font-size: 30px;
+	text-align: center;
+	background-color: #c26e4e !important;
+}
+td {
+	text-align: center;
+}
+label {
+	font-size: 16px;
+}
+.jumbotron, #submitButton {
+	background-color: #c26e4e;
+}
+button {
+	font-size: 20px !important;
+	text-align: center !important;
+}
+button:hover {
+	background-color: #c26e4e !important;
+	text-transform: uppercase;
+}
+
+#recipeDisplay{
+  margin-top: 30px;
+}
