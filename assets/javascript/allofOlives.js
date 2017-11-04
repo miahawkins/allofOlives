@@ -19,7 +19,7 @@ $(document).ready(function(){
 
 		$(".secondPageContent").show();
 
-		userInput = $(".userInput").val().trim();
+		search = $(".search").val().trim();
 
 	});
 
