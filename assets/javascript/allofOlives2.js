@@ -47,7 +47,7 @@ $(document).ready(function(){
                     newItem.append(recipeImage);
                     var title = recipeObject.recipe.label
                     var pOne = $("<p>").html("<a" + " href =" + recipeURL + " target='_blank' >" + title + "</a>");
-                    newItem.append(pOne);
+                    newItem.prepend(pOne);
 
                     //finally grab the carousel and attach the image and label
                     $(".carousel").append(newItem);
@@ -65,8 +65,7 @@ $(document).ready(function(){
 
 
 
-
-                        $(".carousel").on("dblclick", function(){
+                        $(".carousel").on("dblclick", ".carousel-item>img", function(){
                             console.log('clicked')
                                 $(".firstPageContent").hide();
                                 $(".secondPageContent").hide();
@@ -90,7 +89,7 @@ $(document).ready(function(){
 
 
 
-                $("p").on("click", "a", function(){
+                $("p").on("dblclick", "a", function(){
                     // window.location.href = this.recipeURL;
                     
                     $( this ).attr( 'target', '_blank' );
