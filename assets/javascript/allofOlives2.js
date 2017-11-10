@@ -89,11 +89,13 @@ $(document).ready(function(){
 
 
 
-                        $("#carouselId").on("click", ".carousel-item", function(){
-                            // window.location.href = this.recipeURL;
-                            window.location.href = $(this).attr("href")
+                $("p").on("click", "a", function(){
+                    // window.location.href = this.recipeURL;
+                    window.location.href = $(this).attr("href");
 
-                        });
+                });
+
+
 
                 if ($(".carousel").hasClass('initialized')){
                     $(".carousel").removeClass('initialized')
