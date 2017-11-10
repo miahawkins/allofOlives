@@ -41,6 +41,9 @@ p {
 	font-weight: bold;
 }
 
+.firstPageContent {
+	margin-top: 150px;
+}
 
 h1, h3 {
 	color: white;
@@ -51,6 +54,9 @@ h1 {
 	margin-top: 0;
 	margin-bottom: 0;
 	font-size: 6em;
+	text-shadow: 0px 15px 5px rgba(0,0,0,0.1),
+                 10px 20px 5px rgba(0,0,0,0.05),
+                 -10px 20px 5px rgba(0,0,0,0.05);
 }
 
 h3 {
@@ -59,6 +65,23 @@ h3 {
 	margin: 0;
 }
 
+img {
+	height: 100%;
+	width: 100%;
+	border-radius: 50%;
+	border: 5px solid rgba(250, 250, 250, 0.9);
+	transition: border 5s;
+}
+
+img:hover {
+	  box-shadow: 0px 0px .5px 2px rgba(250, 250, 250, 0.9);
+	  	transition: box-shadow 1.5s;
+	  border: 5px solid rgba(2, 250, 250, 1);
+	  	transition: border 8s ease-in-out;
+
+}
+
+
 a {
 	text-align: center;
 	color: white;
@@ -66,12 +89,26 @@ a {
 	border-radius: 30px;
 	font-size: 15px;
 	font-family: 'Kaushan Script', cursive;
-	background: #26a69a;
+	text-shadow: 2px 4px 3px rgba(0,0,0,1);
 
 }
 
+.labelItem:hover { 
+	color: rgba(2, 250, 250, 1);
+	text-shadow: 2px 4px 3px rgba(0,0,0,1);
+	transition: color .8s;
+}
+
+#button:hover {
+	color: white;
+	box-shadow: 0px 0px 1px 2px rgba(250, 250, 250, 1);
+	font-size: 18px;
+	transition: box-shadow .2s ease-in-out;
+	transition: font-size .2s ease-in-out;
+}
+
+
 .carousel .carousel-item {
-	box-shadow: 0px 0px 1px 10px rgba(250, 250, 250, .9);
 }
 
 
@@ -90,15 +127,6 @@ a {
 	padding-top: 0;
 
 }
-
-img {
-	height: 100%;
-	width: 100%;
-	border-radius: 30%;
-	border: 12px solid rgba(250, 250, 250, 0.9);
-    box-shadow: 0px 0px 1px 10px rgba(2, 250, 250, .9);
-}
-
 
 
 /*
