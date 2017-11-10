@@ -34,6 +34,7 @@ $(document).ready(function(){
                     var recipeURL = recipeObject.recipe.url;
                     var newItem = $("<a>");
                     newItem.addClass("carousel-item");
+                    newItem.attr("target", "_blank");
                     newItem.attr("href", recipeURL);
                     newItem.attr("id", "id-" + i);
 
@@ -45,7 +46,7 @@ $(document).ready(function(){
                     //and tie it to the carousel-item class with the label at the bottom
                     newItem.append(recipeImage);
                     var title = recipeObject.recipe.label
-                    var pOne = $("<p>").html("<a" + " href =" + recipeURL + ">" + title + "</a>");
+                    var pOne = $("<p>").html("<a" + " href =" + recipeURL + " target='_blank' >" + title + "</a>");
                     newItem.append(pOne);
 
                     //finally grab the carousel and attach the image and label
@@ -91,7 +92,11 @@ $(document).ready(function(){
 
                 $("p").on("click", "a", function(){
                     // window.location.href = this.recipeURL;
-                    window.location.href = $(this).attr("href");
+                    
+                    $( this ).attr( 'target', '_blank' );
+
+                    window.open($(this).attr("href"));
+
 
                 });
 
@@ -106,7 +111,7 @@ $(document).ready(function(){
 
     };
 
-    $(document).on("click","a", function(event) {
+    $(document).on("click", function(event) {
 
         event.preventDefault();
         $(".carousel").empty();
