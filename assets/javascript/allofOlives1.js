@@ -84,7 +84,9 @@ $(document).ready(function(){
 			$('.carousel').carousel('next', 2);
 		}
 	});
+	var newImg = $("<img>");
 
+	var carouselHTML = "<ahref='' " + newImg + "</a>"
 
 	function secondPage(){
 
