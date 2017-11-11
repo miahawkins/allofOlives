@@ -1,24 +1,55 @@
 //Begin js when page has loaded
+
 $(document).ready(function(){
 
-// Start of Edamam API
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////recipe api////////
+
     var appKey = "app_key=238477868c4e70b18cc712bf9f08d051";
     var appId = "app_id=813ea76d";
     var query = "q=";
     var userInput = "";
     var edamam = "https://api.edamam.com/search?";
     $(".carousel").carousel();
-    var queryURL = edamam + appKey + "&" + appId + "&" + query + userInput;
 
+    var proxy = "https://cors-anywhere.herokuapp.com/";
+    var queryURL = proxy + edamam + appKey + "&" + appId + "&" + query + userInput;
     //function to search API based on user input
+
+    ///nutrition api///
+
+
+    var queryURL2 = proxy + "https://api.edamam.com/api/food-database/parser?";
+
+    var appKey2 = "app_key=656882bac9a4cc33b9815962ecf9d629";
+
+    var appId2 = "app_id=ecf75094";
+
+    var query2 = "ingr=";
+
+
+///////////////
+
+
+
     function RecipeQuery(queryURL){
         console.log(queryURL);
-
         $("#search").empty();
 
-
+        var tempUserinput = $("#searchInput").val().trim();
             // The AJAX function uses the queryURL and GETS the JSON data associated with it.
+
+///nutrition ajax///
+            
+             $.ajax({
+                  url: queryURL2 + "&" + appId2 + "&" + appKey2 + "&" + query2 + tempUserinput,
+                  method: "GET"
+                }).done(function(response) {
+                  console.log(response.hints)
+                }).fail(function(error) {
+                  console.log(error)
+                });
+
+/////////////////////////
             $.ajax({
                 url: queryURL,
                 method: "GET"
@@ -27,29 +58,39 @@ $(document).ready(function(){
                 
                 // Loop through and provide recipe objects and create html tags in which to inbed
                 for (var i = 0; i < recipes.length; i++) {
-
-                    console.log(userRecipe.hits[i])
-                    var recipeObject = userRecipe.hits[i];
-
+                    console.log(recipes[i])
+                    //This is the looped through recipes
+                    var recipeObject = recipes[i];
                     
+                    //Now we add an a tag and a class
                     var newItem = $("<a>");
                     newItem.addClass("carousel-item");
                     newItem.attr("href", "#one");
-
+                    newItem.append("<a id= 'a" + i + "'></a>");
+                    $("#a" + i).html(recipes[i]);
+                    // now we make a recipe image
                     var recipeImage = $("<img>")
-                    recipeImage.attr("src", userRecipe.hits[i].recipe.image);
-
+                    recipeImage.attr("src", recipeObject.recipe.image);
+                    //and tie it to the carousel-item class with the label at the bottom
                     newItem.append(recipeImage);
-                    newItem.append(userRecipe.hits[i].recipe.label);
-
+                    newItem.append(recipeObject.recipe.label);
+                    //finally grab the carousel and attach the image and label
                     $(".carousel").append(newItem);
-
                     //recipe name and image to put in carousel
                     console.log(
-                        userRecipe.hits[i].recipe.label,
-                        userRecipe.hits[i].recipe.image
+                        recipeObject.recipe.label,
+                        recipeObject.recipe.image,
+                        recipeObject.recipe.ingredients,
+                        recipeObject.recipe.totalNutrients,
+                        recipeObject.recipe.calories,
+                        recipeObject.recipe.url
                     ); 
-                    
+                    for(var j = 0; j < recipes.length; j++){
+                        $(".carousel-item").on("dblclick", function(){
+                            console.log("clicked");
+                            
+                        })
+                    }
                     //information to be put on third page:
                     console.log(
                         userRecipe.hits[i].recipe.ingredientLines,
@@ -60,19 +101,30 @@ $(document).ready(function(){
                         userRecipe.hits[i].recipe.url
                     );
                 }
-
                 if ($(".carousel").hasClass('initialized')){
                     $(".carousel").removeClass('initialized')
                 }
-
                 $(".carousel").carousel();
-            });
+        });
     };
 
-    
+
+    var config = {
+        apiKey: "AIzaSyD851L3syf6upbQE45naR6eyoR5RgsjM-A",
+        authDomain: "allofolives.firebaseapp.com",
+        databaseURL: "https://allofolives.firebaseio.com",
+        projectId: "allofolives",
+        storageBucket: "allofolives.appspot.com",
+        messagingSenderId: "660668013130"
+      };
+      firebase.initializeApp(config);
+
+      var recipeData = firebase.database();
+
+////////////////
+
 
     $(document).on("click","a", function(event) {
-
         event.preventDefault();
         $(".carousel").empty();
         $("#putRecipeContentHere").empty();
@@ -81,68 +133,19 @@ $(document).ready(function(){
         // console.log(searchTerm);
         var searchURL = queryURL + searchTerm;
 
-        //Start of Firebase
-        //////////////////////////////////////////////////////////////////////////////////
-
-        // var config = {
-        //     apiKey: "AIzaSyD851L3syf6upbQE45naR6eyoR5RgsjM-A",
-        //     authDomain: "allofolives.firebaseapp.com",
-        //     databaseURL: "https://allofolives.firebaseio.com",
-        //     projectId: "allofolives",
-        //     storageBucket: "allofolives.appspot.com",
-        //     messagingSenderId: "660668013130"
-        //   };
-        //   firebase.initializeApp(config);
-
-        //   var recipeData = firebase.database();
-
-        // //button for adding trains
-        // $("#button").on("click", function(event){
-        //     event.preventDefault();
-        //     //gets user input
-        //     console.log("here");
-        //     var recipeInput = $("#searchInput").val().trim();
-            
-        //     console.log(recipeInput);
-        //     //creates local holder for data
-        //     var RecipeHold = {
-        //         name: recipeInput,
-        //     }
-
-        //     console.log(RecipeHold);
-
-        //     //uploads data to the database
-        //     recipeData.ref().push(RecipeHold);
+        var RecipeHold = {
+            name: searchTerm,
+        }
 
 
-
-        //     //logs everything to the console
-        //     //console.log(newSearch.recipeInput);
-            
+        //uploads data to the database
+        recipeData.ref().push(RecipeHold);
 
 
-        //     //clears the text boxes
-        //     $("#searchInput").val("");
-
-        //     return false;
-        // });
-
-        //End of Firebase
-        ///////////////////////////////////////////////////////////////////////////////////
-        
+        //firebase add here
         RecipeQuery(searchURL);
-
     });
-
-
-// End of Edamam API
 ///////////////////////////////////////////////////////////////////////////////
-
-
-
-//Start of Page navigation
-//////////////////////////////////////////////////////////////////////////////////
-
     $(".carousel").carousel({
         dist:0,
         shift:0,
@@ -157,33 +160,24 @@ $(document).ready(function(){
         secondPage();
         
     });
-
-    $("input").keypress(function(event){
-        if(event.which === 13){
-            secondPage();
-        }
-    });
-
     function secondPage(){
         $(".firstPageContent").hide();
         $(".thirdPageContent").hide();
         $(".secondPageContent").show();
     };
-
     function thirdPage(){
         $(".firstPageContent").hide();
         $(".thirdPageContent").hide();
         $(".secondPageContent").show();
     };
-
-
     // $('.carousel').carousel('next');
     // $('.carousel').carousel('next', 2); // Move next n times.
-    $("img").on("click", function() {
+    $(".carousel").dblclick(function() {
         console.log("hi");
         $(".firstPageContent").hide();
         $(".secondPageContent").hide();
         $(".thirdPageContent").show();
+        
     });
     
     $("#secondPageButton").click(function() {
@@ -201,8 +195,4 @@ $(document).ready(function(){
         // $(".thirdPageContent").hide();
         // $(".secondPageContent").show();
     });
-
-//End of Page Navigation
-////////////////////////////////////////////////////////////////////////////////
-
 });

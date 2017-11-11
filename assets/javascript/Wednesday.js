@@ -1,15 +1,12 @@
 //Begin js when page has loaded
 $(document).ready(function(){
-
-// Start of Edamam API
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-    var appKey = "app_key=238477868c4e70b18cc712bf9f08d051";
-    var appId = "app_id=813ea76d";
+    var appKey2 = "app_key=b65e0f1af389b60ee1a58a21ec309e93";
+    var appId2 = "app_id=c5cbc51c";
     var query = "q=";
     var userInput = "";
     var edamam = "https://api.edamam.com/search?";
     $(".carousel").carousel();
-    var queryURL = edamam + appKey + "&" + appId + "&" + query + userInput;
+    var queryURL2 = edamam + appKey2 + "&" + appId2 + "&" + query + userInput;
 
     //function to search API based on user input
     function RecipeQuery(queryURL){
@@ -20,7 +17,7 @@ $(document).ready(function(){
 
             // The AJAX function uses the queryURL and GETS the JSON data associated with it.
             $.ajax({
-                url: queryURL,
+                url: queryURL2,
                 method: "GET"
             }).done(function(userRecipe) {
                 var recipes = userRecipe.hits;
@@ -66,10 +63,8 @@ $(document).ready(function(){
                 }
 
                 $(".carousel").carousel();
-            });
+        });
     };
-
-    
 
     $(document).on("click","a", function(event) {
 
@@ -79,69 +74,18 @@ $(document).ready(function(){
         var searchTerm = $("#searchInput").val().trim();
         // console.log($(".searchInput"));
         // console.log(searchTerm);
-        var searchURL = queryURL + searchTerm;
+        var searchURL = queryURL2 + searchTerm;
 
-        //Start of Firebase
-        //////////////////////////////////////////////////////////////////////////////////
-
-        // var config = {
-        //     apiKey: "AIzaSyD851L3syf6upbQE45naR6eyoR5RgsjM-A",
-        //     authDomain: "allofolives.firebaseapp.com",
-        //     databaseURL: "https://allofolives.firebaseio.com",
-        //     projectId: "allofolives",
-        //     storageBucket: "allofolives.appspot.com",
-        //     messagingSenderId: "660668013130"
-        //   };
-        //   firebase.initializeApp(config);
-
-        //   var recipeData = firebase.database();
-
-        // //button for adding trains
-        // $("#button").on("click", function(event){
-        //     event.preventDefault();
-        //     //gets user input
-        //     console.log("here");
-        //     var recipeInput = $("#searchInput").val().trim();
-            
-        //     console.log(recipeInput);
-        //     //creates local holder for data
-        //     var RecipeHold = {
-        //         name: recipeInput,
-        //     }
-
-        //     console.log(RecipeHold);
-
-        //     //uploads data to the database
-        //     recipeData.ref().push(RecipeHold);
-
-
-
-        //     //logs everything to the console
-        //     //console.log(newSearch.recipeInput);
-            
-
-
-        //     //clears the text boxes
-        //     $("#searchInput").val("");
-
-        //     return false;
-        // });
-
-        //End of Firebase
-        ///////////////////////////////////////////////////////////////////////////////////
-        
+    
+        //firebase add here
         RecipeQuery(searchURL);
 
     });
 
 
-// End of Edamam API
+
 ///////////////////////////////////////////////////////////////////////////////
 
-
-
-//Start of Page navigation
-//////////////////////////////////////////////////////////////////////////////////
 
     $(".carousel").carousel({
         dist:0,
@@ -184,6 +128,8 @@ $(document).ready(function(){
         $(".firstPageContent").hide();
         $(".secondPageContent").hide();
         $(".thirdPageContent").show();
+        
+        
     });
     
     $("#secondPageButton").click(function() {
@@ -201,8 +147,4 @@ $(document).ready(function(){
         // $(".thirdPageContent").hide();
         // $(".secondPageContent").show();
     });
-
-//End of Page Navigation
-////////////////////////////////////////////////////////////////////////////////
-
 });
