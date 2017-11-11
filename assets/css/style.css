@@ -1,0 +1,109 @@
+body, html{
+    width: 100%;
+    color: white;
+}
+body {
+    text-transform: uppercase;
+    font-family: 'Lato';
+/*  background: url(https://source.unsplash.com/eA4lWiQz3k8/1600x900);
+    background-position: center;
+    background-repeat: no-repeat;*/
+    background: url(https://source.unsplash.com/5O1ddenSM4g) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+#searchInput {
+    /*font-family: 'Satisfy', cursive;*/
+    font-family: 'Kaushan Script', cursive;
+    /*font-family: 'Yellowtail', cursive;*/
+    /*font-family: 'Lobster', cursive;*/
+    /*font-family: 'Pacifico', cursive;*/
+    font-size: 2em;
+    
+    text-shadow: 0px 4px 3px rgba(1, 9, 5, 1),
+                 0px 8px 13px rgba(1, 9, 5, 1),
+                 0px 18px 23px rgba(1, 9, 5, 1);
+    color: white;
+    width: 60%;
+    text-align: center;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    
+}
+p {
+    font-weight: bold;
+}
+h1, h3 {
+    color: white;
+}
+h1 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 6em;
+}
+h3 {
+    text-align: center;
+    font-size: 1em;
+    margin: 0;
+}
+a {
+    text-align: center;
+    color: white;
+    
+    border-radius: 30px;
+    font-size: 15px;
+    font-family: 'Kaushan Script', cursive;
+    background: #26a69a;
+}
+.carousel .carousel-item {
+    box-shadow: 0px 0px 1px 10px rgba(250, 250, 250, .9);
+}
+#secondPageButton {
+    margin-bottom: 50px;
+}
+.btn {
+    border-radius: 20px;
+}
+.carousel {
+    perspective: 900px;
+    margin-top: 0;
+    padding-top: 0;
+}
+img {
+    height: 100%;
+    width: 100%;
+    border-radius: 30%;
+    border: 12px solid rgba(250, 250, 250, 0.9);
+    box-shadow: 0px 0px 1px 10px rgba(2, 250, 250, .9);
+}
+/*
+.carousel .carousel-item {
+  opacity: 1 !important;
+}*/
+hr {
+    width: 100%;
+}
+.firstPageContent {
+    text-align: center;
+}
+.fa-cutlery {
+    padding-left: 0;
+    margin-right: 3px;
+}
+.second, .third {
+    text-align: center;
+}
+#putNutritionContentHere {
+    background: grey;
+    color: white;
+    padding-bottom: 100px;
+    height: 30px;
+}
+.page-footer {
+    padding-top: 0;
+    text-align: center;
+    background: none;
+}
