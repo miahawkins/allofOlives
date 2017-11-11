@@ -25,19 +25,15 @@ $(document).ready(function(){
             url: queryURL2 + "&" + appId2 + "&" + appKey2 + "&" + query2 + tempUserinput,
             method: "GET"
         }).done(function(response) {
-            console.log(response.hints)
             var nutrition = response.hints;
 
             for (var j = 0; j < nutrition.length; j++) {
-                console.log(nutrition[j].food.label);
 
                 var nutritionInfoDiv = $("<div>");
                 nutritionInfoDiv.addClass("putNutritionContentHere");
                 nutritionInfoDiv.append(nutrition[j].food.label);
 
                 $("#putRecipeContentHere").append(nutritionInfoDiv);
-
-               
             }
              
         }).fail(function(error) {
@@ -74,7 +70,6 @@ $(document).ready(function(){
                     //Grab the carousel and attach the image and Recipe Name
                     $(".carousel").append(newItem);
                         $(".carousel").on("dblclick", function(){
-                            console.log('clicked')
                                 $(".firstPageContent").hide();
                                 $(".secondPageContent").hide();
                                 $(".thirdPageContent").show();
@@ -89,9 +84,6 @@ $(document).ready(function(){
                     window.open($(this).attr("href"));
                 });
 
-                // $("img").on("dblclick", "a", function(){
-                //     $(this).attr
-                // })
                 //to dynamically initialize carousel with jQuery for Materialize
                 if ($(".carousel").hasClass('initialized')){
                     $(".carousel").removeClass('initialized')
@@ -134,8 +126,7 @@ $(document).ready(function(){
         $(".carousel").empty();
         $("#putRecipeContentHere").empty();
         var searchTerm = $("#searchInput").val().trim();
-        // console.log($(".searchInput"));
-        // console.log(searchTerm);
+      
         var RecipeHold = {
             name: searchTerm,
         }
